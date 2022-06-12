@@ -5,6 +5,7 @@
     <script>
       function idk(x) {
         console.log(x);
+        document.getElementById("output").innerHTML = x;
         return false;
       }
     </script>
@@ -13,11 +14,11 @@
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
 
-    <form onsubmit="x.value=comment.value; return idk(x.value)">
+    <form onsubmit="return idk(comment.value)">
       <input type="text" id="comment" name="comment" />
       <input type="submit" value="Submit" />
       <br>
-      <output name="x" for="comment"></output>
+      <output id="output"></output>
     </form>
   </body>
 </html>
