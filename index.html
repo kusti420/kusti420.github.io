@@ -2,11 +2,18 @@
 
 <html>
   <body>
+    <script>
+      function idk(x) {
+        console.log(x);
+        return false;
+      }
+    </script>
+
     <title>test</title>
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
 
-    <form onsubmit="x.value=comment.value; return false">
+    <form onsubmit="x.value=comment.value; return idk(x.value)">
       <input type="text" id="comment" name="comment" />
       <input type="submit" value="Submit" />
       <br>
