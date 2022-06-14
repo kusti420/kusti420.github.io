@@ -1,24 +1,30 @@
-<!-- lines required for pyscript  -->
-
 <html>
   <body>
-    <script>
-      function idk(x) {
-        console.log(x);
-        document.getElementById("commentOutput").innerHTML = x;
-        return false;
-      }
-    </script>
+  <!-- functions -->
+  <script>
+    function idk(x) {
+      console.log(x);
+      document.getElementById("commentOutput").innerHTML = x;
+      return false;
+    }
+  </script>
 
-    <title>test</title>
-    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
-    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+  <!-- read info from local idk.json file -->
+  <script>
+    function readJson(file) {
+      fetch(`./${file}`)
+        .then(results => results.json())
+        .then(console.log);
+    }
+    readJson("comments.json");
 
+  </script>
+    <!-- comment form -->
     <form onsubmit="return idk(commentInput.value)">
-      <input type="text" id="commentInput" />
-      <input type="submit" value="Submit" />
-      <br>
-      <output id="commentOutput"></output>
+      <input type="text" id="commentInput">
+      <input type="submit" value="Submit">
     </form>
+    <output id="commentOutput"></output>
+    
   </body>
 </html>

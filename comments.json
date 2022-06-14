@@ -1,0 +1,14 @@
+{
+    "comment_thread": [
+        {
+            "id": 1,
+            "comment": "This is a comment",
+            "parent_id": null,
+            "user" : {
+                "id": 1,
+                "name": "John Doe"
+            },
+            "indent": 0
+        }
+    ]
+}
