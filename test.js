@@ -5,4 +5,4 @@ function readJson(file) {
         .then(console.log);
 }
 
-console.log(readJson('idk.json'));
+console.log(readJson('comments.json'));
