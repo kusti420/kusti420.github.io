@@ -90,7 +90,7 @@
             for (var i = 0; i < headers.length + 1; i++) {
               if (i === 0) {
                 var th = document.createElement("th");
-                th.innerHTML = "Counter";
+                th.innerHTML = "Index";
                 tr.appendChild(th);
               } else {
                 var th = document.createElement("th");
@@ -133,7 +133,7 @@
     <style>
       #CSVTable {
         width: max-content;
-        border-radius: 5px;
+        border-radius: 20px 20px 0 0;
         border-top: 5px solid;
         border-left: 5px solid;
         border-right: 5px solid;
@@ -146,16 +146,30 @@
         margin: 10px;
         font-size: 0.9em;
       }
+      th {
+        background-color: #6e3d75;
+        color: #FF6ED9;
+      }
       tr {
         background-color: #241227;
         color: #FF6ED9;
         font-size: 1.2em;
       }
-    </style>
-    <style>
       body {
         background-color: #241227;
         color: #FF6ED9;
+      }
+      ::-webkit-scrollbar {
+        width: 15px;
+        background: #FF6ED9;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #241227;
+        border-radius: 10px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #000000;
+        border-radius: 10px;
       }
     </style>
   </body>
