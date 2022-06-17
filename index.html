@@ -12,17 +12,62 @@
   <!-- read info from local idk.json file -->
   <script>
     function readJson(file) {
-      fetch(`./${file}`)
+      var x = fetch(`./${file}`)
         .then(results => results.json())
-        .then(console.log);
+      return x;
     }
-    readJson("comments.json");
+    // readJson("comments.json");
 
   </script>
+  <!-- display comments got from readJson method -->
+  <script>
+    function displayComments() {
+      // get the comments from the json file
+      let data = readJson("comments.json");
+      console.log(data);
+      // TODO: display the comments
+  }
+    displayComments();
+  </script>
     <!-- comment form -->
+    <div id="comments"></div>
     <form onsubmit="return idk(commentInput.value)">
-      <input type="text" id="commentInput">
-      <input type="submit" value="Submit">
+      <style>
+        input[name="textBox"] {
+          background-color: #381D3D;
+          padding: 5px;
+          border-radius: 5px;
+          border-color: #FF79DC;
+          border-style: dotted;
+          margin: 10px;
+          cursor: default;
+          color: #FF79DC;
+          border-radius: 30px;
+          font-size: 20px;
+          text-shadow: #e40f44 1px 1px 1px;
+          text-align: left;
+          height: 50px;
+          width: 350px;
+        }
+      </style>
+      <style>
+        input[name="submitButton"] {
+          background-color: #381D3D;
+          padding: 5px;
+          border-radius: 5px;
+          border-color: #FF79DC;
+          border-style: dotted;
+          margin: 10px;
+          cursor: hand;
+          color: #FF79DC;
+          border-radius: 14px;
+          font-size: 20px;
+          width: 100px;
+          height: 50px;
+        }
+      </style>
+      <input type="text" id="commentInput" name="textBox">
+      <input type="submit" value="Submit" name="submitButton">
     </form>
     <output id="commentOutput"></output>
     
