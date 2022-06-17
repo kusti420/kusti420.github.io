@@ -133,7 +133,7 @@
     <style>
       #CSVTable {
         width: max-content;
-        border-radius: 20px 20px 0 0;
+        border-radius: 20px 20px 20px 20px;
         border-top: 5px solid;
         border-left: 5px solid;
         border-right: 5px solid;
@@ -143,8 +143,11 @@
         color: #241227;
         border-color: #FF6ED9;
         border-collapse: collapse;
-        margin: 10px;
+        margin: 5px;
         font-size: 0.9em;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        max-height: 900px;
       }
       th {
         background-color: #6e3d75;
@@ -161,14 +164,15 @@
       }
       ::-webkit-scrollbar {
         width: 15px;
-        background: #FF6ED9;
+        background: #381D3C;
+        border-radius: 10px;
       }
       ::-webkit-scrollbar-thumb {
-        background: #241227;
+        background: #FF6ED9;
         border-radius: 10px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #000000;
+        background: #f18cd7;
         border-radius: 10px;
       }
     </style>
