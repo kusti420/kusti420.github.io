@@ -36,13 +36,12 @@
         input[name="textBox"] {
           background-color: #381D3D;
           padding: 5px;
-          border-radius: 5px;
+          border-radius: 30px;
           border-color: #FF79DC;
           border-style: dotted;
           margin: 10px;
           cursor: default;
           color: #FF79DC;
-          border-radius: 30px;
           font-size: 20px;
           text-shadow: #e40f44 1px 1px 1px;
           text-align: left;
@@ -54,13 +53,12 @@
         input[name="submitButton"] {
           background-color: #381D3D;
           padding: 5px;
-          border-radius: 5px;
+          border-radius: 30px;
           border-color: #FF79DC;
           border-style: dotted;
           margin: 10px;
           cursor: hand;
           color: #FF79DC;
-          border-radius: 14px;
           font-size: 20px;
           width: 100px;
           height: 50px;
@@ -70,6 +68,74 @@
       <input type="submit" value="Submit" name="submitButton">
     </form>
     <output id="commentOutput"></output>
+    <br>
+    <br>
     
+    <h1>BEST SONGS OF ALL TIME</h1>
+    <div id="CSVTable"></div>
+    <script>
+      // get CSV file from https://raw.githubusercontent.com/kusti420/BestSongsOfAllTime/main/CSV/playlist.csv
+      // and display it in a table
+      function displayCSV() {
+        var x = fetch("https://raw.githubusercontent.com/kusti420/BestSongsOfAllTime/main/CSV/playlist.csv")
+          .then(results => results.text())
+          .then(data => {
+            var lines = data.split("\n");
+            var headers = lines[0].split(",");
+            var table = document.createElement("table");
+            table.setAttribute("id", "CSVTable");
+            table.setAttribute("border", "1");
+            table.setAttribute("style", "border-collapse: collapse;");
+            var tr = table.insertRow(-1);
+            for (var i = 0; i < headers.length + 1; i++) {
+              if (i === 0) {
+                var th = document.createElement("th");
+                th.innerHTML = "Counter";
+                tr.appendChild(th);
+              } else {
+                var th = document.createElement("th");
+                th.innerHTML = headers[i - 1];
+                tr.appendChild(th);
+              }
+            }
+            for (var i = 1; i < lines.length; i++) {
+              tr = table.insertRow(-1);
+              var cells = lines[i].split(",");
+              for (var j = 0; j < cells.length + 1; j++) {
+                if (j === 0) {
+                  var td = document.createElement("td");
+                  td.innerHTML = i;
+                  tr.appendChild(td);
+                } else {
+                  if (j - 1 === 1) {
+                    var td = document.createElement("td");
+                    var a = document.createElement("a");
+                    a.setAttribute("href", cells[j - 1]);
+                    a.innerHTML = cells[j - 1];
+                    td.appendChild(a);
+                    tr.appendChild(td);
+                  } else {
+                    var td = document.createElement("td");
+                    td.innerHTML = cells[j - 1];
+                    tr.appendChild(td);
+                  }
+                }
+              }
+            }
+            var div = document.getElementById("CSVTable");
+            div.appendChild(table);
+          });
+      }
+      // turn all links in the table into clickable links
+      function makeLinksClickable() {
+        var table = document.getElementById("CSVTable");
+        var links = table.getElementsByTagName("td");
+        for (var i = 0; i < links.length; i++) {
+          links[i].setAttribute("target", "_blank");
+        }
+      }
+      displayCSV();
+      makeLinksClickable();
+    </script>
   </body>
 </html>
