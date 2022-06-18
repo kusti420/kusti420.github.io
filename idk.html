@@ -1,6 +1,6 @@
 <div id="comments"></div>
 <script>
-  function idk(x) {
+  function output(x) {
       console.log(x);
       document.getElementById("commentOutput").innerHTML = x;
       return false;
@@ -10,14 +10,9 @@
       .then(results => results.json())
     return data;
   }
-  function displayComments() {
-    let x = JSON.stringify(readJson("comments.json"))
-    console.log(x);
-  }
-  displayComments();
 </script>
 
-<form onsubmit="return idk(commentInput.value)">
+<form onsubmit="return output(commentInput.value)">
   <input type="text" id="commentInput" name="textBox">
   <input type="submit" value="Submit" name="submitButton">
 </form>

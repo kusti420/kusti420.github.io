@@ -1,20 +1,12 @@
 <html>
   <body>
   <!-- functions -->
-    <!-- comment form -->
-
-    <!-- potentially replace this with portal tag in the future? -->
-    <p>enable [browser]://flags/#enable-portals</p>
-    <a src="idk.html" href="idk.html" id="idklink">idk</a>
-    <!-- TODO: animate portal transition -->
-    <!-- TODO: change portal size -->
-
+    <!-- enable [browser]://flags/#enable-portals -->
+    <a src="idk.html" href="idk.html" id="idklink">test</a>
     <h1>BEST SONGS OF ALL TIME</h1>
     <div id="CSVTable"></div>
     <script>
-      // get CSV file from https://raw.githubusercontent.com/kusti420/BestSongsOfAllTime/main/CSV/playlist.csv
-      // and display it in a table
-      function displayCSV() {
+      function displayCSV(URL) {
         var x = fetch("https://raw.githubusercontent.com/kusti420/BestSongsOfAllTime/main/CSV/playlist.csv")
           .then(results => results.text())
           .then(data => {
