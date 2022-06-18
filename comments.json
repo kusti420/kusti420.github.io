@@ -9,6 +9,16 @@
                 "name": "John Doe"
             },
             "indent": 0
+        },
+        {
+            "id": 2,
+            "comment": "This is a 2nd comment",
+            "parent_id": null,
+            "user" : {
+                "id": 2,
+                "name": "Joe Mama"
+            },
+            "indent": 0
         }
     ]
 }

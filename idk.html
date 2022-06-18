@@ -5,11 +5,72 @@
       document.getElementById("commentOutput").innerHTML = x;
       return false;
   }
+  function readJson(file) {
+    var data = fetch(`./${file}`)
+      .then(results => results.json())
+    return data;
+  }
+  function displayComments() {
+    let x = JSON.stringify(readJson("comments.json"))
+    console.log(x);
+  }
+  displayComments();
 </script>
+
 <form onsubmit="return idk(commentInput.value)">
   <input type="text" id="commentInput" name="textBox">
   <input type="submit" value="Submit" name="submitButton">
 </form>
+
+<div id="commentSection"></div>
+
 <output id="commentOutput"></output>
+
+<style>
+  input[name="textBox"] {
+        background-color: #241227;
+        padding: 5px;
+        border-radius: 30px;
+        border-color: #FF6ED9;
+        border-style: dotted;
+        margin: 10px;
+        cursor: default;
+        color: #FF6ED9;
+        font-size: 20px;
+        text-align: left;
+        height: 50px;
+        width: 350px;
+  }
+  input[name="submitButton"] {
+    background-color: #241227;
+    padding: 5px;
+    border-radius: 30px;
+    border-color: #FF6ED9;
+    border-style: dotted;
+    margin: 10px;
+    cursor: hand;
+    color: #FF6ED9;
+    font-size: 20px;
+    width: 100px;
+    height: 50px;
+  }
+  body {
+        background-color: #241227;
+        color: #FF6ED9;
+  }
+  ::-webkit-scrollbar {
+    width: 15px;
+    background: #381D3C;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #FF6ED9;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #f18cd7;
+    border-radius: 10px;
+  }
+</style>
 <br>
 <br>

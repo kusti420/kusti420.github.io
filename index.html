@@ -1,28 +1,14 @@
 <html>
   <body>
   <!-- functions -->
-  <!-- read info from local idk.json file -->
-  <script>
-    function readJson(file) {
-      var x = fetch(`./${file}`)
-        .then(results => results.json())
-      return x;
-    }
-    // readJson("comments.json");
-
-  </script>
-  <!-- display comments got from readJson method -->
-  <script>
-    function displayComments() {
-      // get the comments from the json file
-      let data = readJson("comments.json");
-      console.log(data);
-      // TODO: display the comments
-  }
-    displayComments();
-  </script>
     <!-- comment form -->
-    <a href="idk.html" title="idk">idk</a>
+
+    <!-- potentially replace this with portal tag in the future? -->
+    <p>enable [browser]://flags/#enable-portals</p>
+    <a src="idk.html" href="idk.html" id="idklink">idk</a>
+    <!-- TODO: animate portal transition -->
+    <!-- TODO: change portal size -->
+
     <h1>BEST SONGS OF ALL TIME</h1>
     <div id="CSVTable"></div>
     <script>
@@ -126,33 +112,6 @@
       ::-webkit-scrollbar-thumb:hover {
         background: #f18cd7;
         border-radius: 10px;
-      }
-      input[name="textBox"] {
-        background-color: #241227;
-        padding: 5px;
-        border-radius: 30px;
-        border-color: #FF6ED9;
-        border-style: dotted;
-        margin: 10px;
-        cursor: default;
-        color: #FF6ED9;
-        font-size: 20px;
-        text-align: left;
-        height: 50px;
-        width: 350px;
-      }
-      input[name="submitButton"] {
-        background-color: #241227;
-        padding: 5px;
-        border-radius: 30px;
-        border-color: #FF6ED9;
-        border-style: dotted;
-        margin: 10px;
-        cursor: hand;
-        color: #FF6ED9;
-        font-size: 20px;
-        width: 100px;
-        height: 50px;
       }
     </style>
   </body>
