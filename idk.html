@@ -1,4 +1,11 @@
 <div id="comments"></div>
+<script>
+  function idk(x) {
+      console.log(x);
+      document.getElementById("commentOutput").innerHTML = x;
+      return false;
+  }
+</script>
 <form onsubmit="return idk(commentInput.value)">
   <input type="text" id="commentInput" name="textBox">
   <input type="submit" value="Submit" name="submitButton">
