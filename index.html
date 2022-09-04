@@ -93,18 +93,23 @@
         color: #FF6ED9;
       }
       ::-webkit-scrollbar {
-        width: 15px;
+        width: 17px;
+        
+        }
+      ::-webkit-scrollbar-track{
         background: #381D3C;
-        border-radius: 10px;
+        border-radius: 2px 20px 20px 2px;
       }
-      ::-webkit-scrollbar-thumb {
-        background: #FF6ED9;
-        border-radius: 10px;
-      }
+      ::-webkit-scrollbar-thumb{
+        border-radius: 2px 20px 2px 0px;
+        border-top: 4px solid transparent;
+        border-right: 4px solid transparent;
+        background-clip: content-box; 
+        background-color: #FF6ED9; }   
       ::-webkit-scrollbar-thumb:hover {
         background: #f18cd7;
         border-radius: 10px;
       }
     </style>
-  </body>
-</html>
+    </body>
+    </html>
