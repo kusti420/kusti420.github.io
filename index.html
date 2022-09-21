@@ -6,7 +6,6 @@
     <div id="CSVTable"></div>
     <script>
       const URL = "https://raw.githubusercontent.com/kusti420/BestSongsOfAllTime/main/CSV/playlist.csv";
-      // URL to the CSV file
       const getCSV = async () => {
           const response = await fetch(URL);
           const data = await response.text();
