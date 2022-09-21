@@ -15,25 +15,23 @@
             row.replace("\r", "");
           })
           const headers = rows[0].replace("\r", '').split(',');
-          // rows.shift();
           rows = rows.slice(1, rows.length - 1);
           rows.forEach(row => {
-              const elements = row.replace("\r", '').split(',');
+              const elements = row.split(',');
               const title = elements[0];
               const url = elements[1];
               const channel_name = elements[2];
-              console.log([title]);
           });
-          // console.log(headers);
           return [headers, rows]
       }
       var headers = [];
       var rows = [];
       pendingPromise = getCSV().then(function(response) {
         headers = response[0];
-        rows = response[1];     
+        rows = response[1];
+        console.log(headers);
+        console.log(rows);
       });
-      console.log(headers);
       
     </script>
     <style>
