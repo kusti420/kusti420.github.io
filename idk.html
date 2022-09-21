@@ -1,9 +1,15 @@
 <div id="comments"></div>
 <script type="text/javascript" src="CSVparser.js"></script>
 <script type="module">
-  var headers = JSON.parse(localStorage.getItem("headers"));
-  var rows = JSON.parse(localStorage.getItem("rows"));
-  console.log(rows);
+  // localStorage.clear();
+  if (localStorage.length === 0 || localStorage.getItem("headers") === null || localStorage.getItem("rows") === null) {
+    const [headers, rows] = await getCSV();
+    localStorage.setItem("headers", JSON.stringify(headers));
+    localStorage.setItem("rows", JSON.stringify(rows));
+  } else {
+    const headers = JSON.parse(localStorage.getItem("headers"));
+    const rows = JSON.parse(localStorage.getItem("rows"));
+  }
   function output(x) {
       console.log(x);
       document.getElementById("commentOutput").innerHTML = x;
