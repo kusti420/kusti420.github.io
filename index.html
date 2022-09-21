@@ -1,6 +1,5 @@
 <html>
   <body>
-  <!-- functions -->
     <a src="idk.html" href="idk.html" id="idklink">test</a>
     <h1>BEST SONGS OF ALL TIME</h1>
     <div id="CSVTable"></div>
@@ -24,6 +23,53 @@
       const [headers, rows] = await getCSV();
       console.log([rows[69]]);
       
+      function displayCSV() {
+        var table = document.createElement("table");
+        table.setAttribute("id", "CSVTable");
+            table.setAttribute("border", "1");
+            table.setAttribute("style", "border-collapse: collapse;");
+            var tr = table.insertRow(-1);
+            for (var i = 0; i < headers.length + 1; i++) {
+              if (i === 0) {
+                var th = document.createElement("th");
+                th.innerHTML = "Index";
+                tr.appendChild(th);
+              } else {
+                var th = document.createElement("th");
+                th.innerHTML = headers[i - 1];
+                tr.appendChild(th);
+              }
+            }
+            for (var i = 1; i < rows.length; i++) {
+              tr = table.insertRow(-1);
+              var cells = rows[i];
+              for (var j = 0; j < cells.length + 1; j++) {
+                if (j === 0) {
+                  var td = document.createElement("td");
+                  td.innerHTML = i;
+                  tr.appendChild(td);
+                } else {
+                  if (j - 1 === 1) {
+                    // make links open in new tab
+                    var td = document.createElement("td");
+                    var a = document.createElement("a");
+                    a.setAttribute("href", cells[j - 1]);
+                    a.setAttribute("target", "_blank");
+                    a.innerHTML = cells[j - 1];
+                    td.appendChild(a);
+                    tr.appendChild(td);
+                  } else {
+                    var td = document.createElement("td");
+                    td.innerHTML = cells[j - 1];
+                    tr.appendChild(td);
+                  }
+                }
+              }
+            }
+            var div = document.getElementById("CSVTable");
+            div.appendChild(table);
+      }
+      displayCSV();
     </script>
     <style>
       #CSVTable {
