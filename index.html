@@ -6,6 +6,8 @@
     <script type="text/javascript" src="CSVparser.js"></script>
     <script type="module">
       const [headers, rows] = await getCSV();
+      localStorage.setItem("headers", JSON.stringify(headers));
+      localStorage.setItem("rows", JSON.stringify(rows));
       function displayCSV() {
         var table = document.createElement("table");
         table.setAttribute("id", "CSVTable");

@@ -1,6 +1,9 @@
 <div id="comments"></div>
 <script type="text/javascript" src="CSVparser.js"></script>
 <script type="module">
+  var headers = JSON.parse(localStorage.getItem("headers"));
+  var rows = JSON.parse(localStorage.getItem("rows"));
+  console.log(rows);
   function output(x) {
       console.log(x);
       document.getElementById("commentOutput").innerHTML = x;
