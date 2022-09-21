@@ -1,14 +1,24 @@
 <div id="comments"></div>
 <script>
+  const CSV_URL = "https://raw.githubusercontent.com/kusti420/BestSongsOfAllTime/main/CSV/playlist.csv";
+  var allText = [];
+  var lines = [];
+  var txtFile = new XMLHttpRequest();
+    txtFile.open("GET", CSV_URL, true);
+    txtFile.onreadystatechange = function() {
+      if (txtFile.readyState === 4) {  // Makes sure the document is ready to parse.
+        if (txtFile.status === 200) {  // Makes sure it's found the file.
+          allText = txtFile.responseText;
+          lines = txtFile.responseText.split("\n"); // Will separate each line into an array
+          alert(allText);
+        }
+      }
+    }
+
   function output(x) {
       console.log(x);
       document.getElementById("commentOutput").innerHTML = x;
       return false;
-  }
-  function readJson(file) {
-    var data = fetch(`./${file}`)
-      .then(results => results.json())
-    return data;
   }
 </script>
 
@@ -16,8 +26,6 @@
   <input type="text" id="commentInput" name="textBox">
   <input type="submit" value="Submit" name="submitButton">
 </form>
-
-<div id="commentSection"></div>
 
 <output id="commentOutput"></output>
 

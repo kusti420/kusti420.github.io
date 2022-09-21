@@ -1,64 +1,40 @@
 <html>
   <body>
   <!-- functions -->
-    <!-- enable [browser]://flags/#enable-portals -->
     <a src="idk.html" href="idk.html" id="idklink">test</a>
     <h1>BEST SONGS OF ALL TIME</h1>
     <div id="CSVTable"></div>
     <script>
-      function displayCSV(URL) {
-        var x = fetch("https://raw.githubusercontent.com/kusti420/BestSongsOfAllTime/main/CSV/playlist.csv")
-          .then(results => results.text())
-          .then(data => {
-            var lines = data.split("\n");
-            var headers = lines[0].split(",");
-            var table = document.createElement("table");
-            table.setAttribute("id", "CSVTable");
-            table.setAttribute("border", "1");
-            table.setAttribute("style", "border-collapse: collapse;");
-            var tr = table.insertRow(-1);
-            for (var i = 0; i < headers.length + 1; i++) {
-              if (i === 0) {
-                var th = document.createElement("th");
-                th.innerHTML = "Index";
-                tr.appendChild(th);
-              } else {
-                var th = document.createElement("th");
-                th.innerHTML = headers[i - 1];
-                tr.appendChild(th);
-              }
-            }
-            for (var i = 1; i < lines.length; i++) {
-              tr = table.insertRow(-1);
-              var cells = lines[i].split(",");
-              for (var j = 0; j < cells.length + 1; j++) {
-                if (j === 0) {
-                  var td = document.createElement("td");
-                  td.innerHTML = i;
-                  tr.appendChild(td);
-                } else {
-                  if (j - 1 === 1) {
-                    // make links open in new tab
-                    var td = document.createElement("td");
-                    var a = document.createElement("a");
-                    a.setAttribute("href", cells[j - 1]);
-                    a.setAttribute("target", "_blank");
-                    a.innerHTML = cells[j - 1];
-                    td.appendChild(a);
-                    tr.appendChild(td);
-                  } else {
-                    var td = document.createElement("td");
-                    td.innerHTML = cells[j - 1];
-                    tr.appendChild(td);
-                  }
-                }
-              }
-            }
-            var div = document.getElementById("CSVTable");
-            div.appendChild(table);
+      const URL = "https://raw.githubusercontent.com/kusti420/BestSongsOfAllTime/main/CSV/playlist.csv";
+      // URL to the CSV file
+      const getCSV = async () => {
+          const response = await fetch(URL);
+          const data = await response.text();
+          var rows = data.split('\n');
+          rows.forEach(row => {
+            row.replace("\r", "");
+          })
+          const headers = rows[0].replace("\r", '').split(',');
+          // rows.shift();
+          rows = rows.slice(1, rows.length - 1);
+          rows.forEach(row => {
+              const elements = row.replace("\r", '').split(',');
+              const title = elements[0];
+              const url = elements[1];
+              const channel_name = elements[2];
+              console.log([title]);
           });
+          // console.log(headers);
+          return [headers, rows]
       }
-      displayCSV();
+      var headers = [];
+      var rows = [];
+      pendingPromise = getCSV().then(function(response) {
+        headers = response[0];
+        rows = response[1];     
+      });
+      console.log(headers);
+      
     </script>
     <style>
       #CSVTable {
