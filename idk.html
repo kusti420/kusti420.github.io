@@ -32,7 +32,6 @@
     var titles = [searchResults.map(row => row[0]), []];
     var links = [searchResults.map(row => row[1]), []];
     var channel_names = [searchResults.map(row => row[2]), []];
-    document.createElement("div").setAttribute("id", "CSVTable");
         var table = document.createElement("table");
         table.setAttribute("id", "CSVTable");
             table.setAttribute("border", "1");
@@ -97,6 +96,7 @@
 
 <output id="output"></output>
 
+<div id="CSVTable"></div>
 
 <style>
   input[id="searchInput"] {
