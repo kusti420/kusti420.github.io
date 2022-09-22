@@ -1,31 +1,57 @@
-<div id="comments"></div>
+<div id="searchs"></div>
 <script type="text/javascript" src="CSVparser.js"></script>
 <script type="module">
   // localStorage.clear();
-  if (localStorage.length === 0 || localStorage.getItem("headers") === null || localStorage.getItem("rows") === null) {
+  if (localStorage.getItem("headers") === null || localStorage.getItem("rows") === null) {
     const [headers, rows] = await getCSV();
     localStorage.setItem("headers", JSON.stringify(headers));
     localStorage.setItem("rows", JSON.stringify(rows));
   } else {
     const headers = JSON.parse(localStorage.getItem("headers"));
-    const rows = JSON.parse(localStorage.getItem("rows"));
+    var rows = JSON.parse(localStorage.getItem("rows"));
   }
-  function output(x) {
-      console.log(x);
-      document.getElementById("commentOutput").innerHTML = x;
-      return false;
+  var titles = [rows.map(row => row[0]), []];
+  function search(titles, searchValue) {
+    var results = [];
+    for (let i = 0; i < titles[0].length; i++) {
+      if (titles[0][i].toLowerCase().includes(searchValue.toLowerCase())) {
+        results.push(titles[0][i]);
+      }
+    }
+    if (results.length === 0) {
+      return "No results found";
+    } else {
+      return results;
+    }
+  }
+  const params = new URLSearchParams(window.location.search);
+  const searchValue = params.get("search");
+  if (searchValue !== null) {
+    console.log(searchValue);
+    var x = search(titles, searchValue)
+    console.log(x);
   }
 </script>
-
-<form onsubmit="return output(commentInput.value)">
-  <input type="text" id="commentInput" name="textBox">
-  <input type="submit" value="Submit" name="submitButton">
+<script>
+  function output(x) {
+      console.log(x);
+      document.getElementById("output").innerHTML = x;
+      return true;
+  }
+</script>
+<form onsubmit="return output(input.value)">
+  <input type="text" id="searchInput" name="search" placeholder="Search for a song">
+  <input type="submit" id="submitButton" value="Search">
 </form>
-
-<output id="commentOutput"></output>
+<script>
+  // get searh variable from url
+  // if search isnt empty then console.log(search)
+  
+</script>
+<output id="output"></output>
 
 <style>
-  input[name="textBox"] {
+  input[id="searchInput"] {
         background-color: #241227;
         padding: 5px;
         border-radius: 30px;
@@ -39,7 +65,7 @@
         height: 50px;
         width: 350px;
   }
-  input[name="submitButton"] {
+  input[id="submitButton"] {
     background-color: #241227;
     padding: 5px;
     border-radius: 30px;
