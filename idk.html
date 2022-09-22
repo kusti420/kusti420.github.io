@@ -1,4 +1,3 @@
-<div id="searchs"></div>
 <script type="text/javascript" src="CSVparser.js"></script>
 <script type="module">
   // localStorage.clear();
@@ -7,12 +6,13 @@
     localStorage.setItem("headers", JSON.stringify(headers));
     localStorage.setItem("rows", JSON.stringify(rows));
   } else {
-    const headers = JSON.parse(localStorage.getItem("headers"));
+    var headers = JSON.parse(localStorage.getItem("headers"));
     var rows = JSON.parse(localStorage.getItem("rows"));
   }
   var titles = [rows.map(row => row[0]), []];
   var links = [rows.map(row => row[1]), []];
   var channel_names = [rows.map(row => row[2]), []];
+  
   function search(titles, links, channel_names, searchValue) {
     var results = [];
     for (let i = 0; i < titles[0].length; i++) {
@@ -28,29 +28,75 @@
   }
   const params = new URLSearchParams(window.location.search);
   const searchValue = params.get("search");
+  function displayCSV(searchResults) {
+    var titles = [searchResults.map(row => row[0]), []];
+    var links = [searchResults.map(row => row[1]), []];
+    var channel_names = [searchResults.map(row => row[2]), []];
+    document.createElement("div").setAttribute("id", "CSVTable");
+        var table = document.createElement("table");
+        table.setAttribute("id", "CSVTable");
+            table.setAttribute("border", "1");
+            table.setAttribute("style", "border-collapse: collapse;");
+            var tr = table.insertRow(-1);
+            for (var i = 0; i < headers.length + 1; i++) {
+              if (i === 0) {
+                var th = document.createElement("th");
+                th.innerHTML = "Index";
+                tr.appendChild(th);
+              } else {
+                var th = document.createElement("th");
+                th.innerHTML = headers[i - 1];
+                tr.appendChild(th);
+              }
+            }
+            for (var i = 0; i < searchResults.length; i++) {
+              tr = table.insertRow(-1);
+              var cells = searchResults[i];
+              for (var j = 0; j < cells.length + 1; j++) {
+                if (j === 0) {
+                  var td = document.createElement("td");
+                  td.innerHTML = i + 1;
+                  tr.appendChild(td);
+                } else {
+                  if (j - 1 === 1) {
+                    // make links open in new tab
+                    var td = document.createElement("td");
+                    var a = document.createElement("a");
+                    a.setAttribute("href", cells[j - 1]);
+                    a.setAttribute("target", "_blank");
+                    a.innerHTML = cells[j - 1];
+                    td.appendChild(a);
+                    tr.appendChild(td);
+                  } else {
+                    var td = document.createElement("td");
+                    td.innerHTML = cells[j - 1];
+                    tr.appendChild(td);
+                  }
+                }
+              }
+            }
+            var div = document.getElementById("CSVTable");
+            div.appendChild(table);
+      }
   if (searchValue !== null) {
     console.log(searchValue);
     var x = search(titles, links, channel_names, searchValue)
-    console.log(x);
+    console.log(x, typeof x, x === "No results found");
+    if (x === "No results found") {
+      document.getElementById("output").innerHTML = "No results found";
+    } else {
+      displayCSV(x);
+    }
   }
 </script>
-<script>
-  function output(x) {
-      console.log(x);
-      document.getElementById("output").innerHTML = x;
-      return true;
-  }
-</script>
-<form onsubmit="return output(input.value)">
+
+<form onsubmit="return true">
   <input type="text" id="searchInput" name="search" placeholder="Search for a song">
   <input type="submit" id="submitButton" value="Search">
 </form>
-<script>
-  // get searh variable from url
-  // if search isnt empty then console.log(search)
-  
-</script>
+
 <output id="output"></output>
+
 
 <style>
   input[id="searchInput"] {
@@ -79,6 +125,33 @@
     font-size: 20px;
     width: 100px;
     height: 50px;
+  }
+  #CSVTable {
+        width: max-content;
+        border-radius: 20px 20px 20px 20px;
+        border-top: 5px solid;
+        border-left: 5px solid;
+        border-right: 5px solid;
+        border-bottom: 5px solid;
+        border-style: double;
+        background-color: #241227;
+        color: #241227;
+        border-color: #FF6ED9;
+        border-collapse: collapse;
+        margin: 10px;
+        font-size: 0.9em;
+        overflow-y: scroll;
+        overflow-x: auto;
+        max-height: 900px;
+      }
+  th {
+    background-color: #6e3d75;
+    color: #FF6ED9;
+  }
+  tr {
+    background-color: #241227;
+    color: #FF6ED9;
+    font-size: 1.2em;
   }
   body {
         background-color: #241227;
