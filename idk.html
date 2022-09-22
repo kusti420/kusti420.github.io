@@ -11,11 +11,13 @@
     var rows = JSON.parse(localStorage.getItem("rows"));
   }
   var titles = [rows.map(row => row[0]), []];
-  function search(titles, searchValue) {
+  var links = [rows.map(row => row[1]), []];
+  var channel_names = [rows.map(row => row[2]), []];
+  function search(titles, links, channel_names, searchValue) {
     var results = [];
     for (let i = 0; i < titles[0].length; i++) {
       if (titles[0][i].toLowerCase().includes(searchValue.toLowerCase())) {
-        results.push(titles[0][i]);
+        results.push([titles[0][i], links[0][i], channel_names[0][i]]);
       }
     }
     if (results.length === 0) {
@@ -28,7 +30,7 @@
   const searchValue = params.get("search");
   if (searchValue !== null) {
     console.log(searchValue);
-    var x = search(titles, searchValue)
+    var x = search(titles, links, channel_names, searchValue)
     console.log(x);
   }
 </script>
