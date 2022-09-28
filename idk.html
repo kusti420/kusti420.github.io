@@ -34,6 +34,7 @@
     var channel_names = [searchResults.map(row => row[2]), []];
         var table = document.createElement("table");
         table.setAttribute("id", "CSVTable");
+        table.setAttribute("name", "tbl");
             table.setAttribute("border", "1");
             table.setAttribute("style", "border-collapse: collapse;");
             var tr = table.insertRow(-1);
@@ -76,6 +77,24 @@
             }
             var div = document.getElementById("CSVTable");
             div.appendChild(table);
+      var tbl = document.getElementsByName("tbl");
+      
+      tbl.setAttribute("width", "max-content");
+      tbl.setAttribute("border-radius", "20px 20px 20px 20px");
+      tbl.setAttribute("border-top", "5px solid");
+      tbl.setAttribute("border-left", "5px solid");
+      tbl.setAttribute("border-right", "5px solid");
+      tbl.setAttribute("border-bottom", "5px solid");
+      tbl.setAttribute("border-style", "double");
+      tbl.setAttribute("background-color", "#241227");
+      tbl.setAttribute("color", "#241227");
+      tbl.setAttribute("border-color", "#FF6ED9");
+      tbl.setAttribute("border-collapse", "collapse");
+      tbl.setAttribute("margin", "10px");
+      tbl.setAttribute("font-size", "0.9em");
+      tbl.setAttribute("overflow-y", "scroll");
+      tbl.setAttribute("overflow-x", "auto");
+      tbl.setAttribute("max-height", "900px");
       }
   if (searchValue !== null) {
     console.log(searchValue);
@@ -85,6 +104,7 @@
       document.getElementById("output").innerHTML = "No results found";
     } else {
       displayCSV(x);
+      console.log(document.getElementById("CSVTable"));
     }
   }
 </script>
@@ -126,24 +146,6 @@
     width: 100px;
     height: 50px;
   }
-  #CSVTable {
-        width: max-content;
-        border-radius: 20px 20px 20px 20px;
-        border-top: 5px solid;
-        border-left: 5px solid;
-        border-right: 5px solid;
-        border-bottom: 5px solid;
-        border-style: double;
-        background-color: #241227;
-        color: #241227;
-        border-color: #FF6ED9;
-        border-collapse: collapse;
-        margin: 10px;
-        font-size: 0.9em;
-        overflow-y: scroll;
-        overflow-x: auto;
-        max-height: 900px;
-      }
   th {
     background-color: #6e3d75;
     color: #FF6ED9;
